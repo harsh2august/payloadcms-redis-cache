@@ -1,0 +1,34 @@
+{
+  "name": "payloadcms-redis-cache",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "keywords": [
+    "payloadcms",
+    "payload",
+    "redis",
+    "nextjs",
+    "cache"
+  ],
+  "author": "",
+  "license": "MIT",
+  "description": "Redis cache utilities for Payload CMS and Next.js",
+  "dependencies": {
+    "redis": "^5.12.1",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "tsup": "^8.5.1",
+    "typescript": "^5.8.3"
+  }
+}
