@@ -4,7 +4,8 @@ type RedisClient = ReturnType<
     typeof createClient
 >
 
-let client: RedisClient | null = null
+let client: RedisClient | null =
+    null
 
 const getClient = async () => {
     if (!client) {
@@ -15,11 +16,13 @@ const getClient = async () => {
                     '127.0.0.1',
 
                 port: Number(
-                    process.env.REDIS_PORT || 6379
+                    process.env.REDIS_PORT ||
+                    6379
                 ),
             },
 
-            ...(process.env.REDIS_PASSWORD
+            ...(process.env
+                .REDIS_PASSWORD
                 ? {
                     password:
                         process.env.REDIS_PASSWORD,
@@ -45,15 +48,22 @@ const getClient = async () => {
 export const redis = new Proxy(
     {} as RedisClient,
     {
-        get(_, prop: keyof RedisClient) {
-            return async (...args: any[]) => {
+        get(
+            _,
+            prop: keyof RedisClient
+        ) {
+            return async (
+                ...args: any[]
+            ) => {
                 const redis =
                     await getClient()
 
-                const method = redis[prop]
+                const method =
+                    redis[prop]
 
                 if (
-                    typeof method === 'function'
+                    typeof method ===
+                    'function'
                 ) {
                     return (
                         method as any
@@ -65,5 +75,3 @@ export const redis = new Proxy(
         },
     }
 )
-
-export default redis

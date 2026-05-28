@@ -41,7 +41,6 @@ var redis = new Proxy(
     }
   }
 );
-var redis_default = redis;
 
 // src/cacheCollection.ts
 async function cacheCollection({
@@ -49,7 +48,7 @@ async function cacheCollection({
   data,
   expiry = 3600
 }) {
-  await redis_default.set(
+  await redis.set(
     key,
     JSON.stringify(data),
     {
