@@ -3,10 +3,16 @@
   "version": "1.0.0",
   "type": "module",
   "main": "./dist/index.js",
-  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "tsup",
@@ -15,13 +21,11 @@
   "keywords": [
     "payloadcms",
     "payload",
-    "redis",
     "nextjs",
+    "redis",
     "cache"
   ],
-  "author": "",
   "license": "MIT",
-  "description": "Redis cache utilities for Payload CMS and Next.js",
   "dependencies": {
     "redis": "^5.12.1",
     "server-only": "^0.0.1"
