@@ -1,8 +1,10 @@
 import { createClient } from 'redis'
 
-let client: ReturnType<
+type RedisClient = ReturnType<
     typeof createClient
-> | null = null
+>
+
+let client: RedisClient | null = null
 
 const getClient = async () => {
     if (!client) {
@@ -41,17 +43,14 @@ const getClient = async () => {
 }
 
 export const redis = new Proxy(
-    {},
+    {} as RedisClient,
     {
-        get(_, prop) {
+        get(_, prop: keyof RedisClient) {
             return async (...args: any[]) => {
                 const redis =
                     await getClient()
 
-                const method =
-                    redis[
-                    prop as keyof typeof redis
-                    ]
+                const method = redis[prop]
 
                 if (
                     typeof method === 'function'
